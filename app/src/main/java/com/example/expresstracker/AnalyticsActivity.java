@@ -3,6 +3,7 @@ package com.example.expresstracker;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.core.content.ContextCompat;
 
@@ -39,8 +40,9 @@ public class AnalyticsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analytics);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Analytics");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 

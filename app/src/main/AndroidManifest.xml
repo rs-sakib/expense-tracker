@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpressTracker">
         
-        <!-- Dashboard is the launcher activity -->
+        <!-- Main activity for transactions list -->
         <activity
-            android:name=".DashboardActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:configChanges="uiMode">
             <intent-filter>
@@ -22,12 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <!-- Main activity for transactions list -->
+
+        <!-- Dashboard is the launcher activity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".DashboardActivity"
             android:exported="false"
-            android:parentActivityName=".DashboardActivity"
+            android:parentActivityName=".MainActivity"
             android:configChanges="uiMode" />
             
         <activity

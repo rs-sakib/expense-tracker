@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
+            app:cardElevation="0dp"
             app:cardBackgroundColor="@color/card_background">
 
             <LinearLayout
@@ -52,7 +52,7 @@
                     android:text="$0.00"
                     android:textSize="20sp"
                     android:fontFamily="@font/poppins_medium"
-                    android:textColor="@color/secondary" />
+                    android:textColor="@color/primary" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -70,7 +70,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
+                app:cardElevation="0dp"
                 app:cardBackgroundColor="@color/card_background">
 
                 <LinearLayout
@@ -108,7 +108,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
+                app:cardElevation="0dp"
                 app:cardBackgroundColor="@color/card_background">
 
                 <LinearLayout
@@ -135,7 +135,7 @@
                         android:textSize="28sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/poppins_bold"
-                        android:textColor="@color/secondary"
+                        android:textColor="@color/primary"
                         android:layout_marginTop="8dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -147,7 +147,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
+            app:cardElevation="0dp"
             app:cardBackgroundColor="@color/card_background">
 
             <LinearLayout
@@ -178,7 +178,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
+            app:cardElevation="0dp"
             app:cardBackgroundColor="@color/card_background">
 
             <LinearLayout

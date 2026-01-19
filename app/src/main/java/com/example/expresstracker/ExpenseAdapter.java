@@ -16,9 +16,15 @@ import java.util.List;
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> {
 
     private List<Expense> expenses;
+    private OnExpenseClickListener listener;
 
-    public ExpenseAdapter(List<Expense> expenses) {
+    public interface OnExpenseClickListener {
+        void onExpenseClick(Expense expense);
+    }
+
+    public ExpenseAdapter(List<Expense> expenses, OnExpenseClickListener listener) {
         this.expenses = expenses;
+        this.listener = listener;
     }
 
     @NonNull
@@ -37,16 +43,19 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         holder.category.setText(expense.getCategory());
         holder.date.setText(expense.getDate());
 
-        // Set color based on type
-        int color;
         if ("income".equalsIgnoreCase(expense.getType())) {
-            color = ContextCompat.getColor(holder.itemView.getContext(), R.color.income_color);
+            holder.amount.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.income_color));
+            holder.icon.setImageResource(R.drawable.ic_arrow_up);
+            holder.icon.setBackgroundResource(R.drawable.income_background);
+            holder.icon.setColorFilter(ContextCompat.getColor(holder.itemView.getContext(), R.color.income_color));
         } else {
-            color = ContextCompat.getColor(holder.itemView.getContext(), R.color.expense_color);
+            holder.amount.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.expense_color));
+            holder.icon.setImageResource(R.drawable.ic_arrow_down);
+            holder.icon.setBackgroundResource(R.drawable.expense_background);
+            holder.icon.setColorFilter(ContextCompat.getColor(holder.itemView.getContext(), R.color.expense_color));
         }
 
-        holder.typeIndicator.setBackgroundColor(color);
-        holder.amount.setTextColor(color);
+        holder.itemView.setOnClickListener(v -> listener.onExpenseClick(expense));
     }
 
     @Override
@@ -59,7 +68,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         TextView amount;
         TextView category;
         TextView date;
-        View typeIndicator;
+        android.widget.ImageView icon;
 
         public ExpenseViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,7 +76,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
             amount = itemView.findViewById(R.id.item_amount);
             category = itemView.findViewById(R.id.item_category);
             date = itemView.findViewById(R.id.item_date);
-            typeIndicator = itemView.findViewById(R.id.item_type_indicator);
+            icon = itemView.findViewById(R.id.item_icon);
         }
     }
 }

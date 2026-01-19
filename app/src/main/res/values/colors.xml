@@ -10,9 +10,9 @@
     <color name="accent">#00d2ff</color>
 
     <!-- Gradient Colors -->
-    <color name="gradient_start">#2193b0</color>
-    <color name="gradient_center">#6dd5ed</color>
-    <color name="gradient_end">#b9fbc0</color>
+    <color name="gradient_start">#1976D2</color>
+    <color name="gradient_center">#1565C0</color>
+    <color name="gradient_end">#0D47A1</color>
 
     <!-- Text Colors -->
     <color name="text_primary">#1A1A1A</color>
