@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.expresstracker.db.Expense;
@@ -35,6 +36,17 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         holder.amount.setText(String.format("$%.2f", expense.getAmount()));
         holder.category.setText(expense.getCategory());
         holder.date.setText(expense.getDate());
+
+        // Set color based on type
+        int color;
+        if ("income".equalsIgnoreCase(expense.getType())) {
+            color = ContextCompat.getColor(holder.itemView.getContext(), R.color.income_color);
+        } else {
+            color = ContextCompat.getColor(holder.itemView.getContext(), R.color.expense_color);
+        }
+
+        holder.typeIndicator.setBackgroundColor(color);
+        holder.amount.setTextColor(color);
     }
 
     @Override
@@ -47,6 +59,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         TextView amount;
         TextView category;
         TextView date;
+        View typeIndicator;
 
         public ExpenseViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -54,6 +67,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
             amount = itemView.findViewById(R.id.item_amount);
             category = itemView.findViewById(R.id.item_category);
             date = itemView.findViewById(R.id.item_date);
+            typeIndicator = itemView.findViewById(R.id.item_type_indicator);
         }
     }
 }

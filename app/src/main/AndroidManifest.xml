@@ -11,15 +11,48 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpressTracker">
+        
+        <!-- Dashboard is the launcher activity -->
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".DashboardActivity"
+            android:exported="true"
+            android:configChanges="uiMode">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!-- Main activity for transactions list -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:parentActivityName=".DashboardActivity"
+            android:configChanges="uiMode" />
+            
+        <activity
+            android:name=".AddExpenseActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:configChanges="uiMode" />
+            
+        <activity
+            android:name=".AnalyticsActivity"
+            android:exported="false"
+            android:parentActivityName=".DashboardActivity"
+            android:configChanges="uiMode" />
+            
+        <activity
+            android:name=".ReportsActivity"
+            android:exported="false"
+            android:parentActivityName=".DashboardActivity"
+            android:configChanges="uiMode" />
+            
+        <activity
+            android:name=".BudgetActivity"
+            android:exported="false"
+            android:parentActivityName=".DashboardActivity"
+            android:configChanges="uiMode" />
     </application>
 
 </manifest>

@@ -12,9 +12,11 @@
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="220dp"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:expandedTitleMarginStart="72dp"
+            app:expandedTitleMarginBottom="28dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -22,6 +24,33 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/background"
                 app:layout_collapseMode="parallax" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp"
+                app:layout_collapseMode="parallax">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/ic_app_logo"
+                    android:contentDescription="App Logo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Expense Tracker"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_bold" />
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -46,70 +75,149 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                app:cardElevation="4dp">
+                android:layout_margin="16dp"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Summary"
-                        android:textAppearance="?attr/textAppearanceHeadline6" />
+                        android:text="Financial Summary"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/primary_dark" />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@color/secondary" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="12dp"
+                        android:background="@drawable/income_background">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
                             android:src="@drawable/ic_arrow_upward"
                             app:tint="@color/income_color" />
 
-                        <TextView
-                            android:id="@+id/total_income_textview"
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Total Income: $0.00"
-                            android:textColor="@color/income_color" />
+                            android:layout_marginStart="12dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total Income"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/income_color" />
+
+                            <TextView
+                                android:id="@+id/total_income_textview"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$0.00"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/poppins_bold"
+                                android:textColor="@color/income_color" />
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:orientation="horizontal">
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="12dp"
+                        android:background="@drawable/expense_background">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
                             android:src="@drawable/ic_arrow_downward"
                             app:tint="@color/expense_color" />
 
-                        <TextView
-                            android:id="@+id/total_expense_textview"
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Total Expense: $0.00"
-                            android:textColor="@color/expense_color" />
+                            android:layout_marginStart="12dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total Expense"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/expense_color" />
+
+                            <TextView
+                                android:id="@+id/total_expense_textview"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$0.00"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/poppins_bold"
+                                android:textColor="@color/expense_color" />
+                        </LinearLayout>
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/balance_textview"
-                        android:layout_width="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@color/divider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Balance: $0.00"
-                        android:textAppearance="?attr/textAppearanceSubtitle1" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Current Balance"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textColor="@color/text_primary" />
+
+                        <TextView
+                            android:id="@+id/balance_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$0.00"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textColor="@color/primary_dark" />
+                    </LinearLayout>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -119,14 +227,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="16dp"
-                android:text="No expenses yet. Tap the button below to add one."
+                android:padding="32dp"
+                android:text="No transactions yet.\nTap the button below to add your first transaction!"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/text_secondary"
+                android:lineSpacingExtra="4dp"
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 tools:listitem="@layout/expense_list_item" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -136,8 +249,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:text="Add Expense"
-        app:icon="@android:drawable/ic_input_add" />
+        android:layout_margin="24dp"
+        android:text="Add Transaction"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="16sp"
+        app:icon="@android:drawable/ic_input_add"
+        app:iconSize="24dp"
+        app:elevation="8dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

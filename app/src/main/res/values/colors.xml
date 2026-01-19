@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="red">#FFFF0000</color>
-    <color name="green">#FF00FF00</color>
-    <color name="income_color">#4CAF50</color>
-    <color name="expense_color">#F44336</color>
+    <!-- Brand Colors -->
+    <color name="primary">#2193b0</color>
+    <color name="primary_dark">#1c7a94</color>
+    <color name="primary_light">#71c9df</color>
+    <color name="secondary">#6dd5ed</color>
+    <color name="secondary_dark">#5bbad5</color>
+    <color name="secondary_light">#a8e6f1</color>
+    <color name="accent">#00d2ff</color>
 
-    <color name="md_theme_primary_dark">#FF82C8FF</color>
-    <color name="md_theme_onPrimary_dark">#FF003350</color>
-    <color name="md_theme_primaryContainer_dark">#FF004A72</color>
-    <color name="md_theme_onPrimaryContainer_dark">#FFC5E7FF</color>
-    <color name="md_theme_secondary_dark">#FFB4C8DA</color>
-    <color name="md_theme_onSecondary_dark">#FF203340</color>
-    <color name="md_theme_secondaryContainer_dark">#FF364957</color>
-    <color name="md_theme_onSecondaryContainer_dark">#FFD0E4F7</color>
+    <!-- Gradient Colors -->
+    <color name="gradient_start">#2193b0</color>
+    <color name="gradient_center">#6dd5ed</color>
+    <color name="gradient_end">#b9fbc0</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#BDBDBD</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Background Colors -->
+    <color name="background_light">#F8F9FA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="divider">#EEEEEE</color>
+
+    <!-- Functional Colors -->
+    <color name="income_color">#00BFA5</color>  <!-- Teal Green -->
+    <color name="expense_color">#FF5252</color> <!-- Soft Red -->
+    <color name="warning_color">#FFAB40</color>
 </resources>

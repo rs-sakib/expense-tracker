@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "com.example.expresstracker"
-    compileSdk = 36
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.expresstracker"
         minSdk = 25
-        targetSdk = 36
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -43,4 +43,7 @@ dependencies {
 
     implementation(libs.room.runtime)
     annotationProcessor(libs.room.compiler)
+    
+    // MPAndroidChart for charts
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

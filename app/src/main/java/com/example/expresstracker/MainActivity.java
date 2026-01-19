@@ -2,10 +2,11 @@ package com.example.expresstracker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +17,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private AppDatabase db;
     private ExpenseAdapter adapter;
@@ -84,8 +85,23 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        totalIncome.setText(String.format("Total Income: $%.2f", income));
-        totalExpenses.setText(String.format("Total Expense: $%.2f", expense));
-        balance.setText(String.format("Balance: $%.2f", income - expense));
+        totalIncome.setText(String.format("$%.2f", income));
+        totalExpenses.setText(String.format("$%.2f", expense));
+        balance.setText(String.format("$%.2f", income - expense));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_dashboard) {
+            startActivity(new Intent(this, DashboardActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

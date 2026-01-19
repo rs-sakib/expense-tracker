@@ -7,8 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.expresstracker.db.AppDatabase;
 import com.example.expresstracker.db.Expense;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -19,7 +17,7 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class AddExpenseActivity extends AppCompatActivity {
+public class AddExpenseActivity extends BaseActivity {
 
     private EditText titleEditText, amountEditText, categoryEditText;
     private AutoCompleteTextView typeAutoCompleteTextView;
@@ -46,7 +44,8 @@ public class AddExpenseActivity extends AppCompatActivity {
         cancelButton = findViewById(R.id.button_cancel);
 
         String[] transactionTypes = getResources().getStringArray(R.array.transaction_types);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, transactionTypes);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,
+                transactionTypes);
         typeAutoCompleteTextView.setAdapter(adapter);
 
         addExpenseButton.setOnClickListener(v -> saveExpense());

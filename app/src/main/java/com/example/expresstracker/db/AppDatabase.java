@@ -6,9 +6,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Expense.class}, version = 1)
+@Database(entities = { Expense.class, Budget.class }, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract ExpenseDao expenseDao();
+
+    public abstract BudgetDao budgetDao();
 
     private static volatile AppDatabase INSTANCE;
 
@@ -18,6 +20,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "expense_database")
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }
