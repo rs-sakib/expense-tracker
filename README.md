@@ -5,9 +5,8 @@
 
 **Express Tracker** is a modern, professional Android application designed to help you take control of your personal finances. With a premium Material 3 design and powerful analytics, tracking your income and expenses has never been easier or more beautiful.
 
-![App Banner](https://via.placeholder.com/1200x400.png?text=Express+Tracker+Banner)
 
-## ✨ Key Features
+## 💹 Key Features
 
 ### 📊 **Smart Dashboard**
 *   **Instant Overview**: View your financial status at a glance with **Today**, **Weekly**, **Monthly**, and **Yearly** expense summaries.
