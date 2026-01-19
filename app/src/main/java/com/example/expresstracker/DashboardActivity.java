@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.expresstracker.db.AppDatabase;
 import com.example.expresstracker.db.Expense;
@@ -26,8 +27,9 @@ public class DashboardActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Dashboard");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 

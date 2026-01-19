@@ -2,13 +2,16 @@ package com.example.expresstracker;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.Color;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.expresstracker.db.AppDatabase;
 import com.example.expresstracker.db.Budget;
 import com.example.expresstracker.db.Expense;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,18 +21,21 @@ import java.util.Locale;
 public class BudgetActivity extends BaseActivity {
 
     private AppDatabase db;
-    private EditText budgetAmount;
+    private TextInputEditText budgetAmount;
     private Button setBudgetBtn;
     private TextView currentBudget, spent, remaining, budgetStatus;
+    private LinearProgressIndicator budgetProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Monthly Budget");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Budget");
         }
 
         db = AppDatabase.getDatabase(getApplicationContext());
@@ -40,12 +46,15 @@ public class BudgetActivity extends BaseActivity {
         spent = findViewById(R.id.spent);
         remaining = findViewById(R.id.remaining);
         budgetStatus = findViewById(R.id.budget_status);
+        budgetProgress = findViewById(R.id.budget_progress);
 
         setBudgetBtn.setOnClickListener(v -> setBudget());
         loadBudget();
     }
 
     private void setBudget() {
+        if (budgetAmount.getText() == null)
+            return;
         String amountStr = budgetAmount.getText().toString().trim();
         if (amountStr.isEmpty()) {
             Toast.makeText(this, "Please enter budget amount", Toast.LENGTH_SHORT).show();
@@ -104,23 +113,36 @@ public class BudgetActivity extends BaseActivity {
 
             double finalTotalSpent = totalSpent;
             double finalRemainingAmt = remainingAmt;
+            int finalPercentage = (int) percentage;
 
             runOnUiThread(() -> {
                 currentBudget.setText(String.format("$%.2f", budgetAmt));
                 spent.setText(String.format("$%.2f", finalTotalSpent));
                 remaining.setText(String.format("$%.2f", finalRemainingAmt));
 
+                budgetProgress.setProgress(finalPercentage);
+                if (finalPercentage > 100) {
+                    budgetProgress.setIndicatorColor(Color.parseColor("#FF5252")); // Red if over
+                } else {
+                    budgetProgress.setIndicatorColor(Color.parseColor("#00E676")); // Green/Primary normally
+                }
+
                 String status;
                 if (budgetAmt == 0) {
-                    status = "No budget set for this month";
+                    status = "Not Set";
+                    budgetStatus.setTextColor(Color.GRAY);
                 } else if (percentage < 50) {
-                    status = "On track - Good job!";
+                    status = "On Track";
+                    budgetStatus.setTextColor(Color.parseColor("#00E676"));
                 } else if (percentage < 80) {
-                    status = "Watch spending - Getting close";
+                    status = "Spending";
+                    budgetStatus.setTextColor(Color.parseColor("#FF9800"));
                 } else if (percentage < 100) {
-                    status = "Near limit - Be careful!";
+                    status = "Near Limit";
+                    budgetStatus.setTextColor(Color.parseColor("#FF9800"));
                 } else {
-                    status = "Over budget!";
+                    status = "Over Budget";
+                    budgetStatus.setTextColor(Color.parseColor("#FF5252"));
                 }
                 budgetStatus.setText(status);
             });

@@ -1,15 +1,14 @@
 package com.example.expresstracker;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.expresstracker.db.AppDatabase;
 import com.example.expresstracker.db.Expense;
-import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,7 +19,7 @@ import java.util.concurrent.Executors;
 public class AddExpenseActivity extends BaseActivity {
 
     private EditText titleEditText, amountEditText, categoryEditText;
-    private AutoCompleteTextView typeAutoCompleteTextView;
+    private MaterialButtonToggleGroup typeToggleGroup;
     private Button addExpenseButton, cancelButton;
     private AppDatabase db;
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -33,23 +32,21 @@ public class AddExpenseActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expense);
 
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Add Transaction");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         db = AppDatabase.getDatabase(getApplicationContext());
 
         titleEditText = findViewById(R.id.edit_text_title);
         amountEditText = findViewById(R.id.edit_text_amount);
         categoryEditText = findViewById(R.id.edit_text_category);
-        typeAutoCompleteTextView = findViewById(R.id.auto_complete_text_view_type);
+        typeToggleGroup = findViewById(R.id.toggle_type);
         addExpenseButton = findViewById(R.id.button_add_expense);
         cancelButton = findViewById(R.id.button_cancel);
-
-        String[] transactionTypes = getResources().getStringArray(R.array.transaction_types);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,
-                transactionTypes);
-        typeAutoCompleteTextView.setAdapter(adapter);
 
         if (getIntent().hasExtra("expense_id")) {
             isEditMode = true;
@@ -57,7 +54,14 @@ public class AddExpenseActivity extends BaseActivity {
             titleEditText.setText(getIntent().getStringExtra("expense_title"));
             amountEditText.setText(String.valueOf(getIntent().getDoubleExtra("expense_amount", 0)));
             categoryEditText.setText(getIntent().getStringExtra("expense_category"));
-            typeAutoCompleteTextView.setText(getIntent().getStringExtra("expense_type"), false);
+
+            String type = getIntent().getStringExtra("expense_type");
+            if ("income".equalsIgnoreCase(type)) {
+                typeToggleGroup.check(R.id.btn_income);
+            } else {
+                typeToggleGroup.check(R.id.btn_expense);
+            }
+
             addExpenseButton.setText("Update");
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setTitle("Edit Transaction");
@@ -78,9 +82,11 @@ public class AddExpenseActivity extends BaseActivity {
         String title = titleEditText.getText().toString().trim();
         String amountStr = amountEditText.getText().toString().trim();
         String category = categoryEditText.getText().toString().trim();
-        String type = typeAutoCompleteTextView.getText().toString().trim();
 
-        if (title.isEmpty() || amountStr.isEmpty() || category.isEmpty() || type.isEmpty()) {
+        int checkedId = typeToggleGroup.getCheckedButtonId();
+        String type = (checkedId == R.id.btn_income) ? "income" : "expense";
+
+        if (title.isEmpty() || amountStr.isEmpty() || category.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -94,30 +100,18 @@ public class AddExpenseActivity extends BaseActivity {
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        String date = sdf.format(new Date()); // For create
+        String date = sdf.format(new Date());
 
-        // If editing, we typically keep the original date, but for simplicity assuming
-        // we keep it or update to now?
-        // Let's create the object first.
         Expense newExpense = new Expense();
         newExpense.setTitle(title);
         newExpense.setAmount(amount);
         newExpense.setCategory(category);
-
-        // Handling Date: If editing, keep original date? Since we didn't pass date in
-        // intent, let's just use current date
-        // or effectively "update" the date to now. The user didn't request specific
-        // date logic.
         newExpense.setDate(date);
-
-        newExpense.setType(type.toLowerCase());
+        newExpense.setType(type);
 
         executorService.execute(() -> {
             if (isEditMode) {
                 newExpense.setId(expenseId);
-                // We might want to preserve the original date if not modifying.
-                // But since we didn't pass it, updating to current date is a safe fallback or a
-                // feature.
                 db.expenseDao().updateExpense(newExpense);
                 runOnUiThread(() -> {
                     Toast.makeText(AddExpenseActivity.this, "Transaction updated", Toast.LENGTH_SHORT).show();

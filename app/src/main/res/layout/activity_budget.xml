@@ -1,183 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light">
+    android:background="@color/background_light"
+    tools:context=".BudgetActivity">
 
-    <LinearLayout
+    <!-- Gradient Header -->
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:background="@drawable/gradient_header"
+        app:elevation="0dp">
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Budget"
+            app:titleTextColor="@color/white"
+            app:navigationIcon="@drawable/ic_chevron_right" 
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set Monthly Budget"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/primary_dark"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="4dp"/>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#cac4d0"
+                app:strokeWidth="1dp"
+                app:cardBackgroundColor="@color/white">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Set Monthly Budget"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textColor="@color/primary_dark" />
-
-                <com.google.android.material.textfield.TextInputLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:hint="Budget Amount"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                    app:prefixText="$">
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/budget_amount"
+                    <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:gravity="center_vertical"
+                         android:layout_marginBottom="16dp">
+                         
+                         <ImageView
+                             android:layout_width="40dp"
+                             android:layout_height="40dp"
+                             android:src="@drawable/ic_budget"
+                             app:tint="#00E676"
+                             android:background="@drawable/category_badge"
+                             android:backgroundTint="#2000E676"
+                             android:padding="8dp"/>
+                             
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:text="Plan your spending"
+                             android:textSize="14sp"
+                             android:fontFamily="@font/poppins_medium"
+                             android:textColor="@color/text_secondary"
+                             android:layout_marginStart="12dp"/>
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:fontFamily="@font/poppins_regular" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginTop="8dp"
+                        android:hint="Budget Amount"
+                        app:startIconDrawable="@drawable/ic_transactions"
+                        app:startIconTint="@color/primary"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        app:boxStrokeColor="@color/primary"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp">
 
-                <Button
-                    android:id="@+id/set_budget_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:text="Set Budget"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="16sp"
-                    android:layout_marginTop="12dp"
-                    app:cornerRadius="12dp" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/budget_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:fontFamily="@font/poppins_regular" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+                    <Button
+                        android:id="@+id/set_budget_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="Save Budget"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="16sp"
+                        android:layout_marginTop="16dp"
+                        app:cornerRadius="12dp" 
+                        android:backgroundTint="@color/primary"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Status"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/primary_dark"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="4dp"/>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Current Month"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textColor="@color/primary_dark"
-                    android:layout_marginBottom="16dp" />
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#cac4d0"
+                app:strokeWidth="1dp"
+                app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-                    <TextView
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Budget:"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:textColor="@color/text_secondary" />
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center_vertical">
+                        
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Monthly Budget"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/text_secondary" />
+                            <TextView
+                                android:id="@+id/current_budget"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$0.00"
+                                android:textSize="24sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/poppins_bold"
+                                android:textColor="@color/text_primary" />
+                        </LinearLayout>
+                        
+                         <TextView
+                            android:id="@+id/budget_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Set a budget"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:gravity="end"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textColor="@color/primary"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/category_badge"
+                            android:backgroundTint="#101976D2"/>
+                    </LinearLayout>
+                   
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/budget_progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        app:trackCornerRadius="8dp"
+                        app:trackThickness="8dp"
+                        app:indicatorColor="@color/primary"
+                        app:trackColor="#F5F5F5"/>
 
-                    <TextView
-                        android:id="@+id/current_budget"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="$0.00"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/poppins_bold"
-                        android:textColor="@color/text_primary" />
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Spent"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/text_secondary" />
+                            <TextView
+                                android:id="@+id/spent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$0.00"
+                                android:textSize="18sp"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:textColor="#FF5252" />
+                        </LinearLayout>
+                        
+                        <View 
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#E0E0E0"
+                            android:layout_marginHorizontal="16dp"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Remaining"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/text_secondary" />
+                            <TextView
+                                android:id="@+id/remaining"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$0.00"
+                                android:textSize="18sp"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:textColor="#00E676" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Spent:"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:textColor="@color/text_secondary" />
-
-                    <TextView
-                        android:id="@+id/spent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="$0.00"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/poppins_bold"
-                        android:textColor="@color/expense_color" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="16dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Remaining:"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:textColor="@color/text_secondary" />
-
-                    <TextView
-                        android:id="@+id/remaining"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="$0.00"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/poppins_bold"
-                        android:textColor="@color/income_color" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/divider"
-                    android:layout_marginBottom="12dp" />
-
-                <TextView
-                    android:id="@+id/budget_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No budget set"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textColor="@color/primary_dark" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-    </LinearLayout>
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
