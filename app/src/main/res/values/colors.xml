@@ -9,4 +9,15 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FFFF0000</color>
     <color name="green">#FF00FF00</color>
+    <color name="income_color">#4CAF50</color>
+    <color name="expense_color">#F44336</color>
+
+    <color name="md_theme_primary_dark">#FF82C8FF</color>
+    <color name="md_theme_onPrimary_dark">#FF003350</color>
+    <color name="md_theme_primaryContainer_dark">#FF004A72</color>
+    <color name="md_theme_onPrimaryContainer_dark">#FFC5E7FF</color>
+    <color name="md_theme_secondary_dark">#FFB4C8DA</color>
+    <color name="md_theme_onSecondary_dark">#FF203340</color>
+    <color name="md_theme_secondaryContainer_dark">#FF364957</color>
+    <color name="md_theme_onSecondaryContainer_dark">#FFD0E4F7</color>
 </resources>
