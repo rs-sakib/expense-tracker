@@ -1,8 +1,11 @@
-# Express Tracker 🚀💰
+<div align="center">
+  <img src="app_logo.png" alt="Express Tracker Logo" width="140" />
+  <h1>Express Tracker 🚀💰</h1>
+</div>
 
 **Express Tracker** is a modern, professional Android application designed to help you take control of your personal finances. With a premium Material 3 design and powerful analytics, tracking your income and expenses has never been easier or more beautiful.
 
-![App Banner](https://via.placeholder.com/1200x500.png?text=Express+Tracker+Banner)
+![App Banner](https://via.placeholder.com/1200x400.png?text=Express+Tracker+Banner)
 
 ## ✨ Key Features
 
@@ -46,14 +49,6 @@
 
 ---
 
-## 📸 Screenshots
-
-| Dashboard | Analytics | Reports | Add Transaction |
-|:---:|:---:|:---:|:---:|
-| ![Dashboard](https://via.placeholder.com/250x500?text=Dashboard) | ![Analytics](https://via.placeholder.com/250x500?text=Analytics) | ![Reports](https://via.placeholder.com/250x500?text=Reports) | ![Add](https://via.placeholder.com/250x500?text=Add+Exp) |
-
----
-
 ## 🚀 Getting Started
 
 1.  **Clone the Repository**:
@@ -73,4 +68,4 @@ Contributions are welcome! Please fork the repository and submit a Pull Request.
 
 ---
 
-**Developed with ❤️ by [Your Name/Team]**
+**Developed with ❤️ by Sakib**
